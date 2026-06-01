@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国数字经济与贸易政策知识库</title>
+<style>
+  :root {
+    --blue: #1a56db;
+    --blue-light: #e8effc;
+    --blue-dark: #0f3a8c;
+    --red: #c53030;
+    --red-light: #fef2f2;
+    --green: #276749;
+    --green-light: #f0fff4;
+    --gold: #975a16;
+    --gold-light: #fffbeb;
+    --purple: #6b46c1;
+    --purple-light: #faf5ff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--gray-800); line-height:1.7; background: var(--gray-50); }
+  .container { max-width: 1100px; margin:0 auto; padding:0 20px; }
+
+  /* Header */
+  header { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, #2563eb 100%); color:#fff; padding:48px 0 40px; }
+  header .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; }
+  header h1 { font-size:1.8rem; font-weight:700; letter-spacing:-0.02em; }
+  header .subtitle { font-size:0.95rem; opacity:0.85; margin-top:6px; }
+  header .badge { background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.25); padding:6px 14px; border-radius:20px; font-size:0.85rem; white-space:nowrap; }
+
+  /* Stats bar */
+  .stats-bar { background:#fff; border-bottom:1px solid var(--gray-200); padding:16px 0; }
+  .stats-bar .container { display:flex; gap:32px; flex-wrap:wrap; justify-content:center; }
+  .stat { text-align:center; }
+  .stat .num { font-size:1.5rem; font-weight:700; color:var(--blue); }
+  .stat .label { font-size:0.8rem; color:var(--gray-500); margin-top:2px; }
+
+  /* Section */
+  section { padding:40px 0; }
+  section:nth-child(even) { background:#fff; }
+  .section-title { font-size:1.35rem; font-weight:700; color:var(--gray-900); margin-bottom:8px; display:flex; align-items:center; gap:8px; }
+  .section-title .icon { font-size:1.2rem; }
+  .section-desc { color: var(--gray-500); font-size:0.9rem; margin-bottom:28px; }
+
+  /* Period Cards */
+  .period-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:16px; }
+  .period-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); border-left:4px solid var(--blue); padding:20px 22px; cursor:pointer; transition: all 0.2s; text-decoration:none; color:inherit; display:block; }
+  .period-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+  .period-card:nth-child(1) { border-left-color: #3182ce; }
+  .period-card:nth-child(2) { border-left-color: #2b6cb0; }
+  .period-card:nth-child(3) { border-left-color: var(--red); }
+  .period-card:nth-child(4) { border-left-color: var(--purple); }
+  .period-card .period-label { font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:var(--gray-500); margin-bottom:4px; }
+  .period-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:6px; }
+  .period-card p { font-size:0.85rem; color:var(--gray-600); line-height:1.6; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .period-card .count { display:inline-block; background:var(--gray-100); color:var(--gray-600); padding:2px 10px; border-radius:12px; font-size:0.78rem; margin-top:10px; }
+
+  /* Direction Grid */
+  .dir-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px; }
+  .dir-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:18px 16px; text-align:center; border-top:3px solid var(--blue); }
+  .dir-card:nth-child(2) { border-top-color: #3182ce; }
+  .dir-card:nth-child(3) { border-top-color: var(--red); }
+  .dir-card:nth-child(4) { border-top-color: var(--green); }
+  .dir-card:nth-child(5) { border-top-color: var(--gold); }
+  .dir-card:nth-child(6) { border-top-color: var(--purple); }
+  .dir-card:nth-child(7) { border-top-color: #0891b2; }
+  .dir-card .dir-icon { font-size:1.6rem; margin-bottom:6px; }
+  .dir-card h4 { font-size:0.9rem; font-weight:600; }
+  .dir-card .dir-count { font-size:0.75rem; color:var(--gray-500); margin-top:4px; }
+
+  /* Timeline Tabs */
+  .tabs { display:flex; gap:4px; margin-bottom:24px; flex-wrap:wrap; }
+  .tab-btn { padding:8px 20px; border:1px solid var(--gray-300); background:#fff; border-radius:20px; cursor:pointer; font-size:0.85rem; color:var(--gray-600); transition:all 0.2s; white-space:nowrap; }
+  .tab-btn:hover { border-color:var(--blue); color:var(--blue); }
+  .tab-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* Period Detail */
+  .period-detail h3 { font-size:1.15rem; font-weight:700; margin-bottom:12px; }
+  .period-detail .feature { font-size:0.9rem; color:var(--gray-700); margin-bottom:16px; line-height:1.8; }
+  .period-detail .policy-table { width:100%; border-collapse:collapse; font-size:0.85rem; margin-bottom:16px; }
+  .period-detail .policy-table th { background:var(--gray-100); padding:8px 12px; text-align:left; font-weight:600; color:var(--gray-700); border-bottom:2px solid var(--gray-300); }
+  .period-detail .policy-table td { padding:8px 12px; border-bottom:1px solid var(--gray-200); }
+  .period-detail .policy-table tr:hover { background:var(--blue-light); }
+  .period-detail .case-box { background:var(--gray-50); border-radius:var(--radius); padding:16px; margin-top:12px; border-left:3px solid var(--blue); }
+  .period-detail .case-box h5 { font-size:0.9rem; font-weight:700; margin-bottom:6px; }
+  .period-detail .case-box p { font-size:0.85rem; color:var(--gray-700); line-height:1.7; }
+
+  /* Law Comparison */
+  .law-table-wrap { overflow-x:auto; }
+  .law-table { width:100%; border-collapse:collapse; font-size:0.83rem; min-width:800px; }
+  .law-table thead th { background:var(--blue-dark); color:#fff; padding:10px 14px; text-align:left; font-weight:600; font-size:0.82rem; white-space:nowrap; position:sticky; top:0; }
+  .law-table tbody td { padding:9px 14px; border-bottom:1px solid var(--gray-200); vertical-align:top; line-height:1.6; }
+  .law-table tbody tr:nth-child(even) td { background:var(--gray-50); }
+  .law-table tbody tr:hover td { background:var(--blue-light); }
+  .law-table .law-name { font-weight:700; color:var(--blue-dark); white-space:nowrap; }
+  .law-table .tag { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.72rem; font-weight:600; margin-right:4px; }
+  .tag-law { background:var(--red-light); color:var(--red); }
+  .tag-regulation { background:var(--gold-light); color:var(--gold); }
+  .tag-rule { background:var(--blue-light); color:var(--blue); }
+
+  /* Policy Directory */
+  .filter-bar { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+  .filter-btn { padding:6px 16px; border:1px solid var(--gray-300); background:#fff; border-radius:16px; cursor:pointer; font-size:0.8rem; color:var(--gray-600); transition:all 0.2s; }
+  .filter-btn:hover, .filter-btn.active { background:var(--blue); color:#fff; border-color:var(--blue); }
+  .policy-list { display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:8px; }
+  .policy-item { background:#fff; border-radius:6px; padding:10px 14px; box-shadow:var(--shadow); font-size:0.83rem; display:flex; gap:10px; align-items:flex-start; transition:all 0.15s; }
+  .policy-item:hover { box-shadow:var(--shadow-md); }
+  .policy-item .p-id { font-weight:700; color:var(--blue); white-space:nowrap; font-size:0.78rem; min-width:32px; }
+  .policy-item .p-info { flex:1; min-width:0; }
+  .policy-item .p-name { font-weight:600; color:var(--gray-900); }
+  .policy-item .p-meta { font-size:0.75rem; color:var(--gray-500); margin-top:2px; }
+  .policy-item .p-tag { display:inline-block; padding:1px 6px; border-radius:8px; font-size:0.7rem; font-weight:600; margin-left:6px; }
+  .policy-item.hidden { display:none; }
+
+  /* Trend Summary */
+  .trend-list { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; }
+  .trend-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); padding:20px 22px; }
+  .trend-card h4 { font-size:0.95rem; font-weight:700; margin-bottom:8px; }
+  .trend-card p { font-size:0.85rem; color:var(--gray-600); line-height:1.7; }
+
+  /* Footer */
+  footer { background:var(--gray-800); color:var(--gray-400); padding:24px 0; text-align:center; font-size:0.8rem; }
+  footer a { color:var(--gray-300); text-decoration:underline; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header h1 { font-size:1.3rem; }
+    .stats-bar .container { gap:16px; }
+    .period-grid { grid-template-columns:1fr; }
+    .dir-grid { grid-template-columns: repeat(2, 1fr); }
+    .policy-list { grid-template-columns: 1fr; }
+    .trend-list { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div>
+      <h1>中国数字经济与贸易政策知识库</h1>
+      <div class="subtitle">2015-2026 / 50项核心政策 / 7大方向 / 4个时期 &nbsp;|&nbsp; 《数字经济概论》课程资料</div>
+    </div>
+    <div class="badge">课程章节 · 教学版</div>
+  </div>
+</header>
+
+<div class="stats-bar">
+  <div class="container">
+    <div class="stat"><div class="num">50</div><div class="label">核心政策文件</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">立法 / 法律</div></div>
+    <div class="stat"><div class="num">7</div><div class="label">政策方向</div></div>
+    <div class="stat"><div class="num">4</div><div class="label">演变时期</div></div>
+    <div class="stat"><div class="num">12</div><div class="label">年度跨度</div></div>
+  </div>
+</div>
+
+<!-- 一、四大时期 -->
+<section id="periods">
+  <div class="container">
+    <div class="section-title"><span class="icon">📅</span>四大演变时期</div>
+    <div class="section-desc">点击卡片查看各时期的政策特征与典型案例</div>
+    <div class="period-grid">
+      <a href="#detail-period-1" class="period-card" onclick="switchTab('period-1')">
+        <div class="period-label">时期一 / 2015-2016</div>
+        <h3>信息化筑基与数字战略萌芽</h3>
+        <p>"互联网+"行动、大数据战略、网络安全法出台，数字经济从概念走向实践的奠基时期。</p>
+        <span class="count">5 项政策</span>
+      </a>
+      <a href="#detail-period-2" class="period-card" onclick="switchTab('period-2')">
+        <div class="period-label">时期二 / 2017-2019</div>
+        <h3>数字战略全面铺开</h3>
+        <p>AI规划、电商法、工业互联网，政策覆盖面急速扩大，从单点突破转向系统性推进。</p>
+        <span class="count">9 项政策</span>
+      </a>
+      <a href="#detail-period-3" class="period-card" onclick="switchTab('period-3')">
+        <div class="period-label">时期三 / 2020-2022</div>
+        <h3>治理规范深化</h3>
+        <p>数安法、个保法、反垄断执法，从"包容审慎"走向"规范与发展并重"的关键转折期。</p>
+        <span class="count">15 项政策</span>
+      </a>
+      <a href="#detail-period-4" class="period-card" onclick="switchTab('period-4')">
+        <div class="period-label">时期四 / 2023-2026</div>
+        <h3>高质量加速发展</h3>
+        <p>生成式AI爆发、数据资产入表、AI+行动，数字经济进入智能化、要素化新阶段。</p>
+        <span class="count">21 项政策</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 时期详情（Tab切换） -->
+<section id="detail-period-1" style="background:#fff;">
+  <div class="container">
+    <div class="section-title"><span class="icon">🔍</span>时期详情</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('period-1')">时期一：信息化筑基 (2015-2016)</button>
+      <button class="tab-btn" onclick="switchTab('period-2')">时期二：战略铺开 (2017-2019)</button>
+      <button class="tab-btn" onclick="switchTab('period-3')">时期三：规范深化 (2020-2022)</button>
+      <button class="tab-btn" onclick="switchTab('period-4')">时期四：高质量发展 (2023-2026)</button>
+    </div>
+
+    <div class="tab-panel active" id="period-1">
+      <div class="period-detail">
+        <h3>时期一：信息化筑基与数字战略萌芽（2015-2016）</h3>
+        <div class="feature">
+          以"互联网+"行动计划的提出为标志，将互联网从消费领域全面引入产业领域。滴滴、美团等互联网平台快速崛起，共享经济、移动支付成为最早规模化应用场景。大数据首次上升为国家战略，《网络安全法》出台为数字经济发展划定安全底线。
+        </div>
+        <table class="policy-table">
+          <thead><tr><th>时间</th><th>政策</th><th>意义</th></tr></thead>
+          <tbody>
+            <tr><td>2015.07</td><td>"互联网+"行动指导意见</td><td>开启数字战略序幕，明确11个重点行动领域</td></tr>
+            <tr><td>2015.08</td><td>促进大数据发展行动纲要</td><td>大数据首次上升为国家战略，提出数据强国目标</td></tr>
+            <tr><td>2016.07</td><td>国家信息化发展战略纲要</td><td>提出"三步走"建成网络强国战略目标</td></tr>
+            <tr><td>2016.11</td><td>中华人民共和国网络安全法</td><td>网络安全领域第一部基础性法律</td></tr>
+            <tr><td>2016.12</td><td>"十三五"国家信息化规划</td><td>十三五信息化建设总蓝图</td></tr>
+          </tbody>
+        </table>
+        <div class="case-box">
+          <h5>典型案例：贵阳大数据交易所成立（2015年）</h5>
+          <p>2015年4月，全国首家大数据交易所在贵阳挂牌运营，将"数据"首次作为可交易商品引入市场机制。仅仅四个月后，国务院印发大数据发展行动纲要，从国家层面确认数据为"基础性战略资源"——典型的"地方探索→国家跟进"政策创新路径。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="period-2">
+      <div class="period-detail">
+        <h3>时期二：数字战略全面铺开（2017-2019）</h3>
+        <div class="feature">
+          AI规划、电商法、工业互联网、平台经济指导意见密集出台，政策覆盖面急速扩大。全球首个国家层面AI战略发布，电子商务法填补领域法律空白，2019年首次提出"包容审慎监管"理念。
+        </div>
+        <table class="policy-table">
+          <thead><tr><th>时间</th><th>政策</th><th>意义</th></tr></thead>
+          <tbody>
+            <tr><td>2017.07</td><td>新一代人工智能发展规划</td><td>全球首个国家层面AI战略，"三步走"目标</td></tr>
+            <tr><td>2017.11</td><td>工业互联网发展指导意见</td><td>制造业数字化转型上升为国家战略</td></tr>
+            <tr><td>2018.08</td><td>中华人民共和国电子商务法</td><td>首部电商综合性法律，确立平台责任</td></tr>
+            <tr><td>2018.09</td><td>跨境电商零售进口监管政策</td><td>明确跨境电商税收和监管框架</td></tr>
+            <tr><td>2019.08</td><td>平台经济规范健康发展指导意见</td><td>确立"包容审慎监管"核心理念</td></tr>
+          </tbody>
+        </table>
+        <div class="case-box">
+          <h5>典型案例：AI发展规划与中国AI产业崛起（2017-2019）</h5>
+          <p>2017年AI规划发布后，百度"All in AI"战略转型，商汤科技成为全球估值最高AI创业公司（超45亿美元），2018年中国AI融资额占全球超60%。政策以国家意志明确技术路线优先级，引导巨量资本和人才向AI集中——中国产业政策在数字经济领域最成功的实践之一。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="period-3">
+      <div class="period-detail">
+        <h3>时期三：治理规范深化期（2020-2022）</h3>
+        <div class="feature">
+          数据安全法和个人信息保护法相继出台，与网络安全法构成"三驾马车"。平台经济反垄断启动（阿里182.28亿罚单），数据二十条确立四大制度体系。"十四五"数字经济规划设定核心产业占GDP 10%目标。
+        </div>
+        <table class="policy-table">
+          <thead><tr><th>时间</th><th>政策</th><th>意义</th></tr></thead>
+          <tbody>
+            <tr><td>2020.04</td><td>"上云用数赋智"行动方案</td><td>推动企业数字化转型</td></tr>
+            <tr><td>2021.02</td><td>平台经济反垄断指南</td><td>开启平台经济反垄断元年</td></tr>
+            <tr><td>2021.06</td><td>中华人民共和国数据安全法</td><td>填补数据安全法律空白</td></tr>
+            <tr><td>2021.08</td><td>中华人民共和国个人信息保护法</td><td>中国版"隐私法"框架确立</td></tr>
+            <tr><td>2021.12</td><td>"十四五"数字经济发展规划</td><td>首个数字经济专项规划</td></tr>
+            <tr><td>2022.12</td><td>"数据二十条"</td><td>数据产权三权分置顶层设计</td></tr>
+          </tbody>
+        </table>
+        <div class="case-box">
+          <h5>典型案例：阿里"二选一"反垄断案（2021年）</h5>
+          <p>2021年4月，市场监管总局对阿里巴巴"二选一"垄断行为处以182.28亿元罚款——这是反垄断法实施以来最大罚单，被称为中国数字经济治理的"分水岭时刻"。此后各平台纷纷开放互联互通，"大而不能管"的时代终结。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="period-4">
+      <div class="period-detail">
+        <h3>时期四：高质量发展期（2023-2026）</h3>
+        <div class="feature">
+          生成式AI爆发（200+国产大模型），数字中国"2522"框架提出，数据资产入表正式实施，AI+六大领域深度融合。数据基础设施"三步走"建设路径明确，平台经济反垄断进入"合规常态化"阶段。
+        </div>
+        <table class="policy-table">
+          <thead><tr><th>时间</th><th>政策</th><th>意义</th></tr></thead>
+          <tbody>
+            <tr><td>2023.02</td><td>数字中国建设整体布局规划</td><td>"2522"框架，数字经济上升为全方位战略</td></tr>
+            <tr><td>2023.07</td><td>生成式AI服务管理暂行办法</td><td>全球首部生成式AI专项法规</td></tr>
+            <tr><td>2023.10</td><td>算力基础设施高质量发展计划</td><td>保障大模型训练的算力需求</td></tr>
+            <tr><td>2024.01</td><td>企业数据资源会计处理规定</td><td>数据资产入表，全球率先实践</td></tr>
+            <tr><td>2024.03</td><td>规范和促进数据跨境流动规定</td><td>平衡安全与开放</td></tr>
+            <tr><td>2025.08</td><td>"人工智能+"行动意见</td><td>AI+六大领域，2027年终端普及率超70%</td></tr>
+          </tbody>
+        </table>
+        <div class="case-box">
+          <h5>典型案例：数据资产入表——从"资源"到"资产"的财务确认（2024年）</h5>
+          <p>2024年起，企业可将数据确认为无形资产或存货计入资产负债表，中国移动、南方电网等率先披露数据资产信息。这标志着数据作为生产要素的价值从理论走向会计实践，其深远意义堪比历史上土地确权和知识产权制度的确立。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 二、七大政策方向 -->
+<section id="directions">
+  <div class="container">
+    <div class="section-title"><span class="icon">🧭</span>七大政策方向</div>
+    <div class="section-desc">50项政策覆盖7个核心领域</div>
+    <div class="dir-grid">
+      <div class="dir-card"><div class="dir-icon">📊</div><h4>数字经济顶层战略</h4><div class="dir-count">12项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">🛒</div><h4>电子商务</h4><div class="dir-count">5项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">🔐</div><h4>数据治理</h4><div class="dir-count">10项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">🌐</div><h4>数字贸易</h4><div class="dir-count">3项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">⚖️</div><h4>平台经济</h4><div class="dir-count">6项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">🤖</div><h4>人工智能</h4><div class="dir-count">5项政策</div></div>
+      <div class="dir-card"><div class="dir-icon">🏗️</div><h4>数字基础设施</h4><div class="dir-count">6项政策</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 三、六部大法对比 -->
+<section id="laws" style="background:#fff;">
+  <div class="container">
+    <div class="section-title"><span class="icon">📜</span>六部大法比较分析</div>
+    <div class="section-desc">核心法律文件的要点与功能对比</div>
+    <div class="law-table-wrap">
+      <table class="law-table">
+        <thead>
+          <tr>
+            <th width="14%">法律</th>
+            <th width="10%">通过时间</th>
+            <th width="10%">类型</th>
+            <th width="23%">核心要点</th>
+            <th width="23%">核心功能</th>
+            <th width="20%">对数字经济的影响</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="law-name">网络安全法</td>
+            <td>2016.11</td>
+            <td><span class="tag tag-law">法律</span></td>
+            <td>网络空间主权原则；网络安全等级保护制度；关键信息基础设施保护；个人信息保护基本规范</td>
+            <td>划定数字经济的网络安全底线；确立"安全与发展并重"基本原则；为后续专项立法提供基础框架</td>
+            <td>第一部基础性法律，所有数字经济活动的安全基线；网络运营者的合规基础义务</td>
+          </tr>
+          <tr>
+            <td class="law-name">电子商务法</td>
+            <td>2018.08</td>
+            <td><span class="tag tag-law">法律</span></td>
+            <td>电商经营者主体资格登记；平台"避风港+红旗"双重责任；禁止大数据杀熟和默认勾选</td>
+            <td>规范电商市场秩序；明确平台经营者法律责任边界；保护消费者线上交易权益</td>
+            <td>结束电商领域无法可依状况；平台责任制度推动行业规范化运营</td>
+          </tr>
+          <tr>
+            <td class="law-name">数据安全法</td>
+            <td>2021.06</td>
+            <td><span class="tag tag-law">法律</span></td>
+            <td>数据分类分级保护；数据安全审查制度；重要数据出境管理；数据安全风险评估与应急处置</td>
+            <td>建立数据全生命周期安全管理制度；为国家核心数据提供最高级别保护；规范数据跨境流动秩序</td>
+            <td>填补数据安全法律空白；所有数据处理活动纳入法治轨道；数据"三驾马车"之核心</td>
+          </tr>
+          <tr>
+            <td class="law-name">个人信息保护法</td>
+            <td>2021.08</td>
+            <td><span class="tag tag-law">法律</span></td>
+            <td>"告知-同意"核心原则；个人查阅/复制/删除/可携带等权利；大型平台"守门人"条款；最高上年营业额5%罚款</td>
+            <td>全面保护个人信息权益；构建中国版个人信息保护法律框架；对大型互联网平台设置更高义务</td>
+            <td>影响所有数据处理企业；"守门人"制度针对超级平台的特别监管</td>
+          </tr>
+          <tr>
+            <td class="law-name">反垄断法<br><small>(2022修正)</small></td>
+            <td>2022.06</td>
+            <td><span class="tag tag-law">法律</span></td>
+            <td>增加数字经济反垄断条款；"鼓励创新"纳入立法目的；禁止用数据/算法/技术实施垄断；违法上限提至年销售额10%</td>
+            <td>为数字经济反垄断提供明确法律依据；大幅提高违法成本增强威慑力；将算法合谋纳入反垄断规制</td>
+            <td>重塑数字市场竞争秩序；"二选一"等行为具有明确违法性；推动平台开放互联互通</td>
+          </tr>
+          <tr>
+            <td class="law-name">CII保护条例</td>
+            <td>2021.09</td>
+            <td><span class="tag tag-regulation">行政法规</span></td>
+            <td>关键信息基础设施认定标准；运营者安全保护义务；安全检测评估制度；供应链安全管理</td>
+            <td>强化关键领域的网络安全保护；衔接网络安全法实施细则；保障能源/交通/金融等命脉领域</td>
+            <td>划定数字经济安全红线；影响云计算/数据中心等基础设施服务商</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px; padding:14px 18px; background:var(--blue-light); border-radius:var(--radius); font-size:0.85rem; color:var(--blue-dark);">
+      <strong>演进路径：</strong>网安法（2016年，安全底线）→ 电商法（2018年，平台责任）→ 数安法+个保法（2021年，数据治理双支柱）→ 反垄断法修正+CII条例（2022年，竞争秩序+关键保护）→ 网络安全法修正（2025年，动态修订）。从单点突破到"三驾马车"再到体系化完善，形成了以7部法律为核心、多层配套法规为支撑的数字经济法治架构。
+    </div>
+  </div>
+</section>
+
+<!-- 四、政策目录（可筛选） -->
+<section id="directory">
+  <div class="container">
+    <div class="section-title"><span class="icon">📋</span>50项政策完整目录</div>
+    <div class="section-desc">按方向或时期筛选查看</div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterPolicies('all')">全部 (50)</button>
+      <button class="filter-btn" onclick="filterPolicies('战略')">顶层战略</button>
+      <button class="filter-btn" onclick="filterPolicies('数据')">数据治理</button>
+      <button class="filter-btn" onclick="filterPolicies('电商')">电子商务</button>
+      <button class="filter-btn" onclick="filterPolicies('平台')">平台经济</button>
+      <button class="filter-btn" onclick="filterPolicies('AI')">人工智能</button>
+      <button class="filter-btn" onclick="filterPolicies('基础设施')">基础设施</button>
+    </div>
+    <div class="policy-list" id="policyList"></div>
+  </div>
+</section>
+
+<!-- 五、趋势总结 -->
+<section id="trends" style="background:#fff;">
+  <div class="container">
+    <div class="section-title"><span class="icon">📈</span>核心趋势总结</div>
+    <div class="section-desc">从六大维度看中国数字经济政策的演进规律</div>
+    <div class="trend-list">
+      <div class="trend-card">
+        <h4>1. 法律体系成熟度</h4>
+        <p>从2016年网安法的单点突破，到2021年"三驾马车"并立，再到2025年动态修订机制建立。已形成以7部法律为核心、18件行政法规为支撑、19件部门规章为配套的立体化法律体系。</p>
+      </div>
+      <div class="trend-card">
+        <h4>2. 监管理念演变</h4>
+        <p>探索鼓励（2015-2018）→ 包容审慎（2018-2020）→ 从严规范（2021）→ 规范发展并重（2022至今）。从"先发展后治理"到"边发展边规范"再到"以规促新"。</p>
+      </div>
+      <div class="trend-card">
+        <h4>3. 产业开放路径</h4>
+        <p>消费互联网（2015-2018）→ 产业互联网（2017-2020）→ 人工智能产业化（2017-2025）→ 数据要素市场化（2022至今）。价值链从低端向高端持续攀升。</p>
+      </div>
+      <div class="trend-card">
+        <h4>4. 数据治理框架</h4>
+        <p>数据库建设（2015-2017）→ 安全立法准备（2018-2020）→ 立法爆发（2021）→ 基础制度体系（2022）→ 体系深化（2023-2026）。从几乎空白到全球领先的体系化程度。</p>
+      </div>
+      <div class="trend-card">
+        <h4>5. 国际规则对接</h4>
+        <p>学习适应 → 积极参与 → 规则博弈 → 主动塑造。从WTO电子商务工作组的规则接受者，到DEPA申请加入、生成式AI全球治理的规则创新者。</p>
+      </div>
+      <div class="trend-card">
+        <h4>6. 制度创新节奏</h4>
+        <p>2015-2016平均3.3件/年 → 2017-2019平均3.0件/年 → 2020-2022平均5.0件/年 → 2023-2026平均5.3件/年。政策密度持续递增，制度创新进入加速通道。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>中国数字经济与贸易政策知识库 · 2015-2026 &nbsp;|&nbsp; 《数字经济概论》课程教学资料</p>
+    <p style="margin-top:4px;">基于 CodeBuddy AI + Obsidian 构建 &nbsp;|&nbsp; 共 50 项核心政策 · 完整 PDF 原文 &amp; 知识笔记见课程知识空间</p>
+  </div>
+</footer>
+
+<script>
+// Policy data - all 50 entries
+const policies = [
+  {id:"P001",name:"国务院关于积极推进\"互联网+\"行动的指导意见",date:"2015-07",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P002",name:"国务院关于印发促进大数据发展行动纲要的通知",date:"2015-08",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P003",name:"国家信息化发展战略纲要",date:"2016-07",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P004",name:"国务院关于印发\"十三五\"国家信息化规划的通知",date:"2016-12",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P005",name:"中华人民共和国网络安全法",date:"2016-11",type:"法律",tag:"网络安全",cat:"数据"},
+  {id:"P006",name:"国务院关于印发新一代人工智能发展规划的通知",date:"2017-07",type:"行政法规",tag:"人工智能",cat:"AI"},
+  {id:"P007",name:"关于深化\"互联网+先进制造业\"发展工业互联网的指导意见",date:"2017-11",type:"行政法规",tag:"基础设施",cat:"基础设施"},
+  {id:"P008",name:"中华人民共和国电子商务法",date:"2018-08",type:"法律",tag:"电子商务",cat:"电商"},
+  {id:"P009",name:"关于促进平台经济规范健康发展的指导意见",date:"2019-08",type:"行政法规",tag:"平台经济",cat:"平台"},
+  {id:"P010",name:"数字乡村发展战略纲要",date:"2019-05",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P011",name:"区块链信息服务管理规定",date:"2019-01",type:"部门规章",tag:"战略",cat:"战略"},
+  {id:"P012",name:"关于推进\"上云用数赋智\"行动培育新经济发展实施方案",date:"2020-04",type:"部门规章",tag:"基础设施",cat:"基础设施"},
+  {id:"P013",name:"中华人民共和国数据安全法",date:"2021-06",type:"法律",tag:"数据治理",cat:"数据"},
+  {id:"P014",name:"中华人民共和国个人信息保护法",date:"2021-08",type:"法律",tag:"数据治理",cat:"数据"},
+  {id:"P015",name:"关键信息基础设施安全保护条例",date:"2021-07",type:"行政法规",tag:"网络安全",cat:"数据"},
+  {id:"P016",name:"国务院反垄断委员会关于平台经济领域的反垄断指南",date:"2021-02",type:"行政法规",tag:"平台经济",cat:"平台"},
+  {id:"P017",name:"互联网信息服务算法推荐管理规定",date:"2021-12",type:"部门规章",tag:"平台经济",cat:"平台"},
+  {id:"P018",name:"数据出境安全评估办法",date:"2022-07",type:"部门规章",tag:"数据治理",cat:"数据"},
+  {id:"P019",name:"国务院关于印发\"十四五\"数字经济发展规划的通知",date:"2021-12",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P020",name:"关于构建数据基础制度更好发挥数据要素作用的意见（数据二十条）",date:"2022-12",type:"行政法规",tag:"数据治理",cat:"数据"},
+  {id:"P021",name:"关于加强数字政府建设的指导意见",date:"2022-06",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P022",name:"个人信息出境标准合同办法",date:"2023-02",type:"部门规章",tag:"数据治理",cat:"数据"},
+  {id:"P023",name:"数字中国建设整体布局规划",date:"2023-02",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P024",name:"关于加快构建全国一体化大数据中心协同创新体系的指导意见",date:"2021-12",type:"部门规章",tag:"基础设施",cat:"基础设施"},
+  {id:"P025",name:"生成式人工智能服务管理暂行办法",date:"2023-07",type:"部门规章",tag:"人工智能",cat:"AI"},
+  {id:"P026",name:"关于推动平台经济规范健康持续发展的若干意见",date:"2022-01",type:"部门规章",tag:"平台经济",cat:"平台"},
+  {id:"P027",name:"关于加快场景创新以人工智能高水平应用促进经济高质量发展的指导意见",date:"2022-08",type:"部门规章",tag:"人工智能",cat:"AI"},
+  {id:"P028",name:"个人信息保护认证实施规则",date:"2023-04",type:"部门规章",tag:"数据治理",cat:"数据"},
+  {id:"P029",name:"数字乡村发展行动计划（2022-2025年）",date:"2022-01",type:"部门规章",tag:"战略",cat:"战略"},
+  {id:"P030",name:"关于加快5G发展的通知",date:"2022-02",type:"部门规章",tag:"基础设施",cat:"基础设施"},
+  {id:"P031",name:"规范和促进数据跨境流动规定",date:"2024-03",type:"部门规章",tag:"数据治理",cat:"数据"},
+  {id:"P032",name:"数字商务三年行动计划（2024-2026年）",date:"2024-04",type:"部门规章",tag:"电商",cat:"电商"},
+  {id:"P033",name:"国务院关于深入实施\"人工智能+\"行动的意见",date:"2025-08",type:"行政法规",tag:"人工智能",cat:"AI"},
+  {id:"P034",name:"国家数据基础设施建设指引",date:"2025-01",type:"部门规章",tag:"基础设施",cat:"基础设施"},
+  {id:"P035",name:"算力基础设施高质量发展行动计划",date:"2023-10",type:"部门规章",tag:"基础设施",cat:"基础设施"},
+  {id:"P036",name:"关于修改《中华人民共和国网络安全法》的决定",date:"2025-10",type:"法律",tag:"网络安全",cat:"数据"},
+  {id:"P037",name:"互联网平台反垄断合规指引",date:"2026-01",type:"部门规章",tag:"平台经济",cat:"平台"},
+  {id:"P038",name:"关于更好服务实体经济推进电子商务高质量发展的意见",date:"2026-04",type:"部门规章",tag:"电商",cat:"电商"},
+  {id:"P039",name:"中华人民共和国反垄断法（2022修正）",date:"2022-06",type:"法律",tag:"平台经济",cat:"平台"},
+  {id:"P040",name:"关于加强科技伦理治理的意见",date:"2022-03",type:"行政法规",tag:"人工智能",cat:"AI"},
+  {id:"P041",name:"关于推进实施国家文化数字化战略的意见",date:"2022-05",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P042",name:"网络信息内容生态治理规定",date:"2019-12",type:"部门规章",tag:"战略",cat:"战略"},
+  {id:"P043",name:"关于跨境电子商务综合试验区零售出口货物税收政策的通知",date:"2018-09",type:"部门规章",tag:"电商",cat:"电商"},
+  {id:"P044",name:"关于支持自由贸易试验区深化改革创新若干措施的通知",date:"2018-11",type:"行政法规",tag:"数字贸易",cat:"数据"},
+  {id:"P045",name:"关于进一步优化外商投资环境加大吸引外商投资力度的意见",date:"2023-08",type:"行政法规",tag:"战略",cat:"战略"},
+  {id:"P046",name:"网络安全审查办法",date:"2022-02",type:"部门规章",tag:"网络安全",cat:"数据"},
+  {id:"P047",name:"上海市数据条例",date:"2021-11",type:"地方性法规",tag:"数据治理",cat:"数据"},
+  {id:"P048",name:"网络交易监督管理办法",date:"2021-03",type:"部门规章",tag:"电商",cat:"电商"},
+  {id:"P049",name:"关于促进数据标注产业高质量发展的若干意见",date:"2025-03",type:"部门规章",tag:"人工智能",cat:"AI"},
+  {id:"P050",name:"十五五规划纲要（数字经济相关章节）",date:"2026-03",type:"法律",tag:"战略",cat:"战略"}
+];
+
+function renderPolicies(filter) {
+  var list = document.getElementById('policyList');
+  var tagColor = {'法律':'tag-law','行政法规':'tag-regulation','部门规章':'tag-rule','地方性法规':'tag-rule'};
+  var html = '';
+  policies.forEach(function(p) {
+    var hidden = (filter !== 'all' && p.cat !== filter && p.tag !== filter);
+    html += '<div class="policy-item' + (hidden ? ' hidden' : '') + '" data-cat="' + p.cat + '">';
+    html += '<span class="p-id">' + p.id + '</span>';
+    html += '<div class="p-info">';
+    html += '<div class="p-name">' + p.name + '</div>';
+    html += '<div class="p-meta">' + p.date + ' · ' + p.type + '<span class="p-tag ' + (tagColor[p.type]||'') + '">' + p.tag + '</span></div>';
+    html += '</div></div>';
+  });
+  list.innerHTML = html;
+}
+
+function filterPolicies(cat) {
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  event.target.classList.add('active');
+  document.querySelectorAll('.policy-item').forEach(function(item) {
+    if (cat === 'all') { item.classList.remove('hidden'); }
+    else { item.classList.toggle('hidden', item.dataset.cat !== cat); }
+  });
+}
+
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById(tabId).classList.add('active');
+  // Also update tab button
+  var btns = document.querySelectorAll('.tab-btn');
+  var idx = {'period-1':0,'period-2':1,'period-3':2,'period-4':3}[tabId];
+  if (idx !== undefined) btns[idx].classList.add('active');
+  document.getElementById('detail-period-1').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// Init
+renderPolicies('all');
+</script>
+</body>
+</html>

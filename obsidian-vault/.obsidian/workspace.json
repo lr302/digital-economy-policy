@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "44ecd23830afedd0",
+    "type": "split",
+    "children": [
+      {
+        "id": "8312c2f1be7d18a7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "466cdcbc49c0b9f8",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "附件/原文PDF/P007_新一代人工智能发展规划.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "P007_新一代人工智能发展规划"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c69f5d1ffbac0183",
+    "type": "split",
+    "children": [
+      {
+        "id": "d034663353e66a81",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "89ce76c3dd478165",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "f1f26dbee41c4542",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "7d8f112f6b7824d1",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "106b7ba6526b7584",
+    "type": "split",
+    "children": [
+      {
+        "id": "6a5f92045ba9cf03",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "526cf7593a377152",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "附件/原文PDF/P015_中华人民共和国反垄断法（修订草案）启动.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "P015_中华人民共和国反垄断法（修订草案）启动 的反向链接列表"
+            }
+          },
+          {
+            "id": "75207000b07a1676",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "附件/原文PDF/P015_中华人民共和国反垄断法（修订草案）启动.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "P015_中华人民共和国反垄断法（修订草案）启动 的出链列表"
+            }
+          },
+          {
+            "id": "ea0f2261c9739e31",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "157840a56ccb7281",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "0b1c34fd3e6f925f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "附件/原文PDF/P015_中华人民共和国反垄断法（修订草案）启动.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "P015_中华人民共和国反垄断法（修订草案）启动 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "466cdcbc49c0b9f8",
+  "lastOpenFiles": [
+    "附件/原文PDF/P006_电子商务法（草案）历次审议.pdf",
+    "附件/原文PDF/P004_中华人民共和国网络安全法.pdf",
+    "01-基础立法/网络安全/P004_中华人民共和国网络安全法.md",
+    "01-基础立法/网络安全 2.md",
+    "00-导航与索引/🏠 知识库主页.md",
+    "未命名 5.base",
+    "未命名 4.base",
+    "未命名 3.base",
+    "未命名 2.base",
+    "未命名 1.canvas",
+    "2026-05-31.md",
+    "未命名 1.base",
+    "附件/原文PDF/P043_数字贸易发展报告2024.pdf",
+    "未命名.base",
+    "附件/原文PDF/P043_数字贸易发展报告2024_new.pdf",
+    "04-跨境监管/数字贸易/P043_数字贸易发展报告2024.md",
+    "附件/原文PDF/P048_中华人民共和国数据安全法（修正草案），全国人民代表大会常务委员会.pdf",
+    "02-战略规划/P042_数字经济促进共同富裕实施方案.md",
+    "01-基础立法/网络安全 1.md",
+    "01-基础立法/网络安全.md",
+    "2026-05-30.md",
+    "未命名.canvas",
+    "03-产业政策/产业数字化/P014_关于以新业态新模式引领新型消费加快发展的意见.md",
+    "03-产业政策/产业数字化/P008_关于进一步扩大和升级信息消费持续释放内需潜力的指导意见.md",
+    "03-产业政策/产业数字化/P046_国务院关于加强数字政府建设的指导意见.md",
+    "03-产业政策/产业数字化/P033_关于加快推进一件事一次办改革提升政务服务效能的通知.md",
+    "03-产业政策/产业数字化/P010_关于推动创新创业高质量发展打造双创升级版的意见.md",
+    "03-产业政策/产业数字化/P084_十四五软件和信息技术服务业发展规划，工业和信息化部.md",
+    "01-基础立法/电子商务/P083_网络直播营销管理办法（试行），国家互联网信息办公室等7部门.md",
+    "04-跨境监管/数字贸易/P082_关于进一步优化外商投资环境加大吸引外商投资力度的意见，国务院.md",
+    "01-基础立法/数据安全/P081_国家标准 GBT 41773-2022 信息安全技术 数据分类分级规则，国家市场监管总局.md",
+    "03-产业政策/P056_可信数据空间发展行动计划（2024—2028年），国家数据局.md",
+    "03-产业政策/P055_关于开展App违法违规收集使用个人信息专项治理的公告，国家互联网信息办公室等4部门.md",
+    "03-产业政策/P054_网络安全标准实践指南—移动互联网应用程序（App）收集使用个人信息自评估指南，全国信息安全标准化技术委员会.md",
+    "03-产业政策/P053_信息安全技术 个人信息安全规范（2020版），国家市场监督管理总局国标委.md",
+    "03-产业政策/P052_工业和信息化领域数据安全管理办法（试行），工业和信息化部.md",
+    "03-产业政策/P051_关于加强互联网平台反垄断监管规定（征求意见稿），国家市场监督管理总局.md",
+    "03-产业政策/P050_汽车数据安全管理若干规定（试行），国家互联网信息办公室等5部门.md"
+  ]
+}
